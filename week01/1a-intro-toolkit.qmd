@@ -67,6 +67,7 @@ The most important thing about this course
 ## Poll Everywhere
 
 :::{.font75}
+
 [PollEv.com/minedogucu800](https://pollev.com/minedogucu800)
 
 :::
@@ -79,7 +80,7 @@ What do you think data science is about and what will we learn in this course? T
 
 :::{.font75}
 [PollEv.com/minedogucu800](https://pollev.com/minedogucu800)
-
+:::
 
 ## What is Data Science?
 
