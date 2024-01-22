@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="4a-reproducible-workflow_files/libs/clipboard/clipboard.min.js"></script>
-<script src="4a-reproducible-workflow_files/libs/quarto-html/tabby.min.js"></script>
-<script src="4a-reproducible-workflow_files/libs/quarto-html/popper.min.js"></script>
-<script src="4a-reproducible-workflow_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="4a-reproducible-workflow_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="4a-reproducible-workflow_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="4a-reproducible-workflow_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="4a-reproducible-workflow_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="4a-data-wrangling2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="4a-data-wrangling2_files/libs/quarto-html/tabby.min.js"></script>
+<script src="4a-data-wrangling2_files/libs/quarto-html/popper.min.js"></script>
+<script src="4a-data-wrangling2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="4a-data-wrangling2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="4a-data-wrangling2_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="4a-data-wrangling2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="4a-data-wrangling2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Dr.&nbsp;Mine Dogucu">
-  <title>Good Workflow Practices for Reproducible Data Science</title>
+  <title>Data Wrangling   Part II</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="4a-reproducible-workflow_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="4a-reproducible-workflow_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="4a-data-wrangling2_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="4a-data-wrangling2_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="4a-reproducible-workflow_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="4a-reproducible-workflow_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="4a-reproducible-workflow_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="4a-reproducible-workflow_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="4a-reproducible-workflow_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="4a-data-wrangling2_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="4a-data-wrangling2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="4a-data-wrangling2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="4a-data-wrangling2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="4a-data-wrangling2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -390,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="https://www.introdata.science/img/logo.png" data-background-position="50% 85%" data-background-size="5%" class="quarto-title-block center">
-  <h1 class="title">Good Workflow Practices for Reproducible Data Science</h1>
+  <h1 class="title">Data Wrangling <br> Part II</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -401,355 +401,470 @@ Dr.&nbsp;Mine Dogucu
 </div>
 
 </section>
-<section id="naming-files" class="slide level2">
-<h2>Naming files</h2>
-<div>
-<p>Three principles of naming files</p>
-<ul>
-<li>machine readable</li>
-<li>human readable</li>
-<li>plays well with default ordering (e.g.&nbsp;alphabetical and numerical ordering)</li>
-</ul>
-<p>(Jenny Bryan)</p>
-<p>for the purposes of this course an additional principle is that file names follow</p>
-<ul>
-<li>tidyverse style (all lower case letters, words separated by HYPHEN)</li>
-</ul>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">glimpse</span>(lapd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 14,824
+Columns: 4
+$ job_class_title &lt;fct&gt; Police Detective II, Police Sergeant I, Police Lieuten…
+$ employment_type &lt;fct&gt; Full Time, Full Time, Full Time, Full Time, Full Time,…
+$ base_pay        &lt;dbl&gt; 119321.60, 113270.70, 148116.00, 78676.87, 109373.63, …
+$ base_pay_level  &lt;chr&gt; "Greater than 100K", "Greater than 100K", "Greater tha…</code></pre>
+</div>
 </div>
 </section>
-<section id="readme.md" class="slide level2">
-<h2>README.md</h2>
-<ul>
-<li class="fragment"><p>README file is the first file users read. In our case a user might be our future self, a teammate, or (if open source) anyone.</p></li>
-<li class="fragment"><p>There can be multiple README files within a single directory: e.g.&nbsp;for the general project folder and then for a data subfolder. Data folder README’s can possibly contain codebook (data dictionary).</p></li>
-<li class="fragment"><p>It should be brief but detailed enough to help user navigate.</p></li>
-</ul>
+<section>
+<section id="review-of-aggregating-data" class="title-slide slide level1 center">
+<h1>Review of Aggregating Data</h1>
+
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<ul>
-<li class="fragment"><p>a README should be up-to-date (can be updated throughout a project’s lifecycle as needed).</p></li>
-<li class="fragment"><p>On GitHub we use markdown for README file (<code>README.md</code>). Good news: <a href="https://gist.github.com/rxaviers/7360908">emojis are supported.</a></p></li>
-</ul>
-</section>
-<section id="readme-examples" class="slide level2">
-<h2>README examples</h2>
-<ul>
-<li class="fragment"><a href="https://github.com/stats6-fa23/website">STATS 6 website</a></li>
-<li class="fragment"><a href="https://github.com/MuseumofModernArt/collection">Museum of Modern Art Collection</a></li>
-<li class="fragment"><a href="https://github.com/bayes-rules/bayesrules">R package bayesrules</a></li>
-</ul>
-</section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p><strong>Default</strong></p>
-
-<img data-src="img/office-suite-default.png" style="width:60.0%" class="r-stretch"><p>Microsoft products have Copyright. Images used based on <a href="https://www.microsoft.com/en-us/legal/copyright/default.aspx">fair use</a> for educational purposes.</p>
-</section>
-<section id="r-packages-1" class="slide level2">
-<h2>R Packages</h2>
-<p><strong>Optional</strong></p>
-
-<img data-src="img/office-suite-optional.png" style="width:60.0%" class="r-stretch"></section>
-<section id="r-packages-2" class="slide level2">
-<h2>R packages</h2>
-<ul>
-<li class="fragment"><p>When you download R, you actually download base R.</p></li>
-<li class="fragment"><p>But there are MANY optional packages you can download.</p></li>
-<li class="fragment"><p>Good part: There is an R package for (almost) everything, from complex statistical modeling packages to baby names.</p></li>
-<li class="fragment"><p>Bad part: At the beginning it can feel overwhelming.</p></li>
-<li class="fragment"><p>All this time we have actually been using R packages.</p></li>
-</ul>
-</section>
-<section id="r-packages-3" class="slide level2">
-<h2>R packages</h2>
-<p>What do R packages have? All sorts of things but mainly</p>
-<ul>
-<li class="fragment"><p>functions</p></li>
-<li class="fragment"><p>datasets</p></li>
-</ul>
-</section>
-<section id="r-packages-4" class="slide level2">
-<h2>R packages</h2>
-<p>Try running the following code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in beep(): could not find function "beep"</code></pre>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="data-1">Data</h3>
+<p>Observations</p>
+</div><div class="column" style="width:50%;">
+<h3 id="aggregate-data">Aggregate Data</h3>
+<p>Summaries of observations</p>
 </div>
 </div>
-<p>Why are we seeing this error?</p>
+</section>
+<section id="aggregating-categorical-data" class="slide level2">
+<h2>Aggregating Categorical Data</h2>
+<p>Categorical data are summarized with <strong>counts</strong> or <strong>proportions</strong>.</p>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<div class="font75">
-<p>Installing packages</p>
-</div>
-</section>
-<section id="using-install.packages" class="slide level2">
-<h2>Using <code>install.packages()</code></h2>
-<p>In your <strong>Console</strong>, install the beepr package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">install.packages</span>(<span class="st">"beepr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">count</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  employment_type     n
+  &lt;fct&gt;           &lt;int&gt;
+1 Full Time       14664
+2 Part Time         132
+3 Per Event          28</code></pre>
 </div>
-<p>We do this in the Console because we only need to do it once.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">count</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  employment_type     n    prop
+  &lt;fct&gt;           &lt;int&gt;   &lt;dbl&gt;
+1 Full Time       14664 0.989  
+2 Part Time         132 0.00890
+3 Per Event          28 0.00189</code></pre>
+</div>
+</div>
+</div>
 </section>
-<section id="using-packages-pane" class="slide level2">
-<h2>Using Packages pane</h2>
+<section id="aggregating-numerical-data" class="slide level2">
+<h2>Aggregating Numerical Data</h2>
+<p>Mean, median, standard deviation, variance, and quartiles are some of the numerical summaries of numerical variables. Recall</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">summarize</span>(lapd, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>          <span class="at">mean_base_pay =</span> <span class="fu">mean</span>(base_pay),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>          <span class="at">sd_base_pay =</span> <span class="fu">sd</span>(base_pay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mean_base_pay sd_base_pay
+          &lt;dbl&gt;       &lt;dbl&gt;
+1        85149.      38423.</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="aggregating-data-by-groups" class="title-slide slide level1 center">
+<h1>Aggregating Data By Groups</h1>
 
-<img data-src="img/packages-pane.png" style="width:40.0%" class="r-stretch quarto-figure-center"><p>Packages Pane &gt; Install</p>
 </section>
-<section id="letting-rstudio-install" class="slide level2">
-<h2>Letting RStudio Install</h2>
+<section id="group_by" class="slide level2">
+<h2><code>group_by()</code></h2>
 
-<img data-src="img/rstudio-install.png" style="width:80.0%" class="r-stretch quarto-figure-center"><p>If you save your file and using a package RStudio will tell you that you have not installed the package.</p>
-<div class="font75">
-<p>Using packages</p>
-</div>
-</section>
-<section id="using-beep-from-beepr" class="slide level2">
-<h2>Using beep() from beepr</h2>
-<p>Option 1</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(beepr)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>More common usage.</p>
-<p>Useful if you are going to use multiple functions from the same package. E.g. we have used many functions (ggplot, aes, geom_…) from the ggplot2 package. In such cases, usual practice is to put the library name in the first R chunk in the .Rmd file.</p>
-</section>
-<section id="using-beep-from-beepr-1" class="slide level2">
-<h2>Using beep() from beepr</h2>
-<p>Option 2</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>beepr<span class="sc">::</span><span class="fu">beep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Useful when you are going to use a function once or few times. Also useful if there are any conflicts. For instance if there is some other package in your environment that has a beep() function that prints the word beep, you would want to distinguish the beep function from the beepr package and the beep function from the other imaginary package.</p>
+<img data-src="img/group-by.jpeg" class="r-stretch quarto-figure-center"><p><code>group_by()</code> separates the data frame by the groups. Any action following <code>group_by()</code> will be completed for each group separately.</p>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-
-<img data-src="img/beep-help.png" style="width:80.0%" class="r-stretch quarto-figure-center"></section>
-<section id="open-source" class="slide level2">
-<h2>Open Source</h2>
-<ul>
-<li class="fragment"><p>Any one around the world can create R packages.</p></li>
-<li class="fragment"><p>Good part: We are able to do pretty much anything R because someone from around the world has developed the package and shared it.</p></li>
-<li class="fragment"><p>Bad part: The language can be inconsistent.</p></li>
-<li class="fragment"><p>Good news: We have tidyverse.</p></li>
-</ul>
-</section>
-<section id="tidyverse" class="slide level2">
-<h2>Tidyverse</h2>
-<blockquote>
-<p>The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. tidyverse.org</p>
-</blockquote>
-</section>
-<section id="tidyverse-1" class="slide level2">
-<h2>Tidyverse</h2>
-<p>In short, tidyverse is a family of packages. From practical stand point, you can install many tidyverse packages at once (and you did this).</p>
+<p>Q. What is the median salary for each employment type?</p>
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
-<p>We can also load multiple tidyverse packages all at the same time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">group_by</span>(employment_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14,824 × 4
+# Groups:   employment_type [3]
+   job_class_title                  employment_type base_pay base_pay_level    
+   &lt;fct&gt;                            &lt;fct&gt;              &lt;dbl&gt; &lt;chr&gt;             
+ 1 Police Detective II              Full Time        119322. Greater than 100K 
+ 2 Police Sergeant I                Full Time        113271. Greater than 100K 
+ 3 Police Lieutenant II             Full Time        148116  Greater than 100K 
+ 4 Police Service Representative II Full Time         78677. Between 0 and 100K
+ 5 Police Officer III               Full Time        109374. Greater than 100K 
+ 6 Police Officer II                Full Time         95002. Between 0 and 100K
+ 7 Police Officer II                Full Time         95379. Between 0 and 100K
+ 8 Police Officer II                Full Time         95388. Between 0 and 100K
+ 9 Equipment Mechanic               Full Time         80496  Between 0 and 100K
+10 Detention Officer                Full Time         69640  Between 0 and 100K
+# ℹ 14,814 more rows</code></pre>
 </div>
 </div>
-</section>
-<section id="exercise" class="slide level2">
-<h2>Exercise</h2>
-<p>Refer back to older slides and identify the packages for each of the functions we commonly use in this class.</p>
-</section>
-<section id="importing-.csv-data" class="slide level2">
-<h2>Importing .csv Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-excel-data" class="slide level2">
-<h2>Importing Excel Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-excel-data-1" class="slide level2">
-<h2>Importing Excel Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"dataset.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-sas-spss-stata-data" class="slide level2">
-<h2>Importing SAS, SPSS, Stata Data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># SAS</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">read_sas</span>(<span class="st">"dataset.sas7bdat"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># SPSS</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">read_sav</span>(<span class="st">"dataset.sav"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># Stata</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="fu">read_dta</span>(<span class="st">"dataset.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="where-is-the-dataset-file" class="slide level2">
-<h2>Where is the dataset file?</h2>
-<p>Importing data will depend on where the dataset is on your computer. However we use the help of <code>here::here()</code> function. This function sets the working directory to the project folder (i.e.&nbsp;where the <code>.Rproj</code> file is).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/dataset.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="collaboration-on-github" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.002.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-1" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.003.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-2" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.004.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-3" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.005.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-4" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.006.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-5" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.007.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-6" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.008.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-7" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-<p>If each change is made by one collaborator at a time, this would not be an efficient workflow.</p>
-</section>
-<section id="collaboration-on-github-8" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.009.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-9" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.010.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-10" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.011.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-11" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-<p>1 - commit</p>
-<p>2 - pull (very important)</p>
-<p>3 - push</p>
-</section>
-<section id="collaboration-on-github-12" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.013.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-13" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.014.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="collaboration-on-github-14" class="slide level2">
-<h2>Collaboration on GitHub</h2>
-
-<img data-src="img/git-collab.015.jpeg" style="width:90.0%" class="r-stretch"></section>
-<section id="opening-an-issue" class="slide level2">
-<h2>Opening an issue</h2>
-
-<img data-src="img/create-issue.png" style="width:90.0%" class="r-stretch"><p>We can create an <strong>issue</strong> to keep a list of mistakes to be fixed, ideas to check with teammates, or note a to-do task. You can assign tasks to yourself or teammates.</p>
-</section>
-<section id="closing-an-issue" class="slide level2">
-<h2>Closing an issue</h2>
-
-<img data-src="img/issue-number.png" style="width:90.0%" class="r-stretch"><p>If you are working on an issue, it makes sense to refer to issue number in your commit message (e.g.&nbsp;“add first draft of alternate texts for #4”). If your commit resolves the issue then you can use key words such as “fixes #4” or “closes #4” to close the issue. Issues can also be manually closed.</p>
-</section>
-<section id="gitignore" class="slide level2">
-<h2>.gitignore</h2>
-<p>A .gitignore file contains the list of files which Git has been explicitly told to ignore.</p>
-<p>For instance README.html can be git ignored.</p>
-<p>You may consider git ignoring confidential files (e.g.&nbsp;some datasets) so that they would not be pushed by mistake to GitHub.</p>
-<p>A file can be git ignored either by point-and-click using RStudio’s Git pane or by adding the file path to the .gitignore file. For instance weather.csv data file in a data folder need to be added as data/weather.csv</p>
-<p>Files with certain files (e.g.&nbsp;all .log files) can also be ignored. See git ignore patterns.</p>
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
-<p>It is also a good practice to save session information as package versions change, in order to be able to reproduce results from an analysis we need to know under what technical conditions the analysis was conducted.</p>
+<p>Note that when <code>group_by()</code> is used there have been no changes to the number of columns or rows. The only difference we can observe is now <code>Groups: employment_type[3]</code> is displayed indicating the data frame (i.e., tibble) is divided into three groups.</p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">summarize</span>(<span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.1 (2023-06-16)
-Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.0
-
-Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-time zone: America/Los_Angeles
-tzcode source: internal
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.3    
- [5] purrr_1.0.2     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
- [9] ggplot2_3.4.4   tidyverse_2.0.0
-
-loaded via a namespace (and not attached):
- [1] gtable_0.3.4      jsonlite_1.8.7    compiler_4.3.1    tidyselect_1.2.0 
- [5] scales_1.2.1      yaml_2.3.7        fastmap_1.1.1     R6_2.5.1         
- [9] generics_0.1.3    knitr_1.44        munsell_0.5.0     pillar_1.9.0     
-[13] tzdb_0.4.0        rlang_1.1.1       utf8_1.2.3        stringi_1.7.12   
-[17] xfun_0.40         timechange_0.2.0  cli_3.6.1         withr_2.5.1      
-[21] magrittr_2.0.3    digest_0.6.33     grid_4.3.1        rstudioapi_0.15.0
-[25] hms_1.1.3         lifecycle_1.0.3   vctrs_0.6.4       evaluate_0.22    
-[29] glue_1.6.2        fansi_1.0.5       colorspace_2.1-0  rmarkdown_2.25   
-[33] tools_4.3.1       pkgconfig_2.0.3   htmltools_0.5.6.1</code></pre>
+<pre><code># A tibble: 3 × 2
+  employment_type med_base_pay
+  &lt;fct&gt;                  &lt;dbl&gt;
+1 Full Time             97996.
+2 Part Time             14474.
+3 Per Event              4275 </code></pre>
 </div>
 </div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<p>We can also remind ourselves how many staff members there were in each group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>lapd <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">group_by</span>(employment_type) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">summarize</span>(<span class="at">med_base_pay =</span> <span class="fu">median</span>(base_pay),</span>
+<span id="cb13-4"><a href="#cb13-4"></a>            <span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  employment_type med_base_pay count
+  &lt;fct&gt;                  &lt;dbl&gt; &lt;int&gt;
+1 Full Time             97996. 14664
+2 Part Time             14474.   132
+3 Per Event              4275     28</code></pre>
+</div>
+</div>
+<p>Note that <code>n()</code> does not take any arguments.</p>
+</section></section>
+<section>
+<section id="data-joins" class="title-slide slide level1 center">
+<h1>Data Joins</h1>
+
+</section>
+<section id="left_joinx-y" class="slide level2">
+<h2><code>left_join(x, y)</code></h2>
+
+<img data-src="img/left-join.png" width="310" class="r-stretch quarto-figure-center"></section>
+<section id="right_joinx-y" class="slide level2">
+<h2><code>right_join(x, y)</code></h2>
+
+<img data-src="img/right-join.png" style="width:45.0%" class="r-stretch quarto-figure-center"></section>
+<section id="full_joinx-y" class="slide level2">
+<h2><code>full_join(x, y)</code></h2>
+
+<img data-src="img/full-join.png" style="width:45.0%" class="r-stretch quarto-figure-center"></section>
+<section id="inner_joinx-y-and-semi_joinx-y" class="slide level2">
+<h2><code>inner_join(x, y)</code> and <code>semi_join(x, y)</code></h2>
+
+<img data-src="img/inner-semi-join.png" style="width:45.0%" class="r-stretch quarto-figure-center"></section>
+<section id="anti_joinx-y" class="slide level2">
+<h2><code>anti_join(x, y)</code></h2>
+
+<img data-src="img/anti-join.png" style="width:45.0%" class="r-stretch quarto-figure-center"></section>
+<section id="something_joinx-y" class="slide level2">
+<h2><code>something_join(x, y)</code></h2>
+
+<table>
+<thead>
+<tr>
+<th>
+</th>
+<th colspan="2" style="text-align: center">
+x
+</th>
+<th colspan="2" style="text-align: center">
+y
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+</td>
+<td>
+rows
+</td>
+<td>
+columns
+</td>
+<td>
+rows
+</td>
+<td>
+columns
+</td>
+</tr>
+<tr>
+<td>
+<code>left_join()</code>
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+<td>
+matched
+</td>
+<td>
+all
+</td>
+</tr>
+<tr>
+<td>
+<code>right_join()</code>
+</td>
+<td>
+matched
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+</tr>
+<tr>
+<td>
+<code>full_join()</code>
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+<td>
+all
+</td>
+</tr>
+<tr>
+<td>
+<code>inner_join()</code>
+</td>
+<td>
+matched
+</td>
+<td>
+all
+</td>
+<td>
+matched
+</td>
+<td>
+all
+</td>
+</tr>
+<tr>
+<td>
+<code>semi_join()</code>
+</td>
+<td>
+matched
+</td>
+<td>
+all
+</td>
+<td>
+none
+</td>
+<td>
+none
+</td>
+</tr>
+<tr>
+<td>
+<code>anti_join()</code>
+</td>
+<td>
+unmatched
+</td>
+<td>
+all
+</td>
+<td>
+none
+</td>
+<td>
+none
+</td>
+</tr>
+</tbody>
+
+</table>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">artists</a></li><li><a href="#tabset-1-2">songs</a></li><li><a href="#tabset-1-3">albums</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>artists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name          followers
+  &lt;chr&gt;             &lt;dbl&gt;
+1 Beyoncé        24757958
+2 Taylor Swift   33098116
+3 Ariana Grande  51807131</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>songs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  name          song_name                            album_name  song_popularity
+  &lt;chr&gt;         &lt;chr&gt;                                &lt;chr&gt;                 &lt;dbl&gt;
+1 Beyoncé       Savage Remix (feat. Beyoncé)         Savage Rem…              83
+2 Taylor Swift  cardigan                             folklore                 85
+3 Drake         Laugh Now Cry Later (feat. Lil Durk) Laugh Now …              95
+4 Beyoncé       Halo                                 I AM…SASHA…              NA
+5 Ariana Grande Stuck with U (with Justin Bieber)    Stuck with…              NA</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>albums</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  album_name                           album_release_date
+  &lt;chr&gt;                                &lt;date&gt;            
+1 Savage Remix (feat. Beyoncé)         2020-04-29        
+2 I AM…SASHA FIERCE                    2008-11-14        
+3 Stuck with U                         2020-05-08        
+4 Laugh Now Cry Later (feat. Lil Durk) 2020-08-14        </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+
+<img data-src="img/data_joins_spotify.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">left_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  name          song_name                   album_name song_popularity followers
+  &lt;chr&gt;         &lt;chr&gt;                       &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;
+1 Beyoncé       Savage Remix (feat. Beyonc… Savage Re…              83  24757958
+2 Taylor Swift  cardigan                    folklore                85  33098116
+3 Drake         Laugh Now Cry Later (feat.… Laugh Now…              95        NA
+4 Beyoncé       Halo                        I AM…SASH…              NA  24757958
+5 Ariana Grande Stuck with U (with Justin … Stuck wit…              NA  51807131</code></pre>
+</div>
+</div>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">right_join</span>(songs, artists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  name          song_name                   album_name song_popularity followers
+  &lt;chr&gt;         &lt;chr&gt;                       &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;
+1 Beyoncé       Savage Remix (feat. Beyonc… Savage Re…              83  24757958
+2 Taylor Swift  cardigan                    folklore                85  33098116
+3 Beyoncé       Halo                        I AM…SASH…              NA  24757958
+4 Ariana Grande Stuck with U (with Justin … Stuck wit…              NA  51807131</code></pre>
+</div>
+</div>
+</section>
+<section id="section-11" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  name          song_name                   album_name song_popularity followers
+  &lt;chr&gt;         &lt;chr&gt;                       &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;
+1 Beyoncé       Savage Remix (feat. Beyonc… Savage Re…              83  24757958
+2 Taylor Swift  cardigan                    folklore                85  33098116
+3 Drake         Laugh Now Cry Later (feat.… Laugh Now…              95        NA
+4 Beyoncé       Halo                        I AM…SASH…              NA  24757958
+5 Ariana Grande Stuck with U (with Justin … Stuck wit…              NA  51807131</code></pre>
+</div>
+</div>
+</section>
+<section id="section-12" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">full_join</span>(songs, artists, <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">full_join</span>(albums, <span class="at">by =</span> <span class="st">"album_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  name         song_name album_name song_popularity followers album_release_date
+  &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt; &lt;date&gt;            
+1 Beyoncé      Savage R… Savage Re…              83  24757958 2020-04-29        
+2 Taylor Swift cardigan  folklore                85  33098116 NA                
+3 Drake        Laugh No… Laugh Now…              95        NA 2020-08-14        
+4 Beyoncé      Halo      I AM…SASH…              NA  24757958 2008-11-14        
+5 Ariana Gran… Stuck wi… Stuck wit…              NA  51807131 2020-05-08        </code></pre>
+</div>
+</div>
+</section>
+<section id="section-13" class="slide level2">
+<h2></h2>
+<p>Complete the questions provided to you in the lecture notes.</p>
 
 <img src="https://www.introdata.science/img/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://introdata.science">introdata.science</a></p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="4a-reproducible-workflow_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="4a-data-wrangling2_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
